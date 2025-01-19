@@ -6,7 +6,20 @@ using System.Threading.Tasks;
 
 namespace store
 {
-    internal class BookService
+    public class BookService
     {
+        private readonly IBookRepository bookRepository;
+
+        public BookService(IBookRepository bookRepository)
+        {
+            this.bookRepository = bookRepository;
+        }
+
+        public Book[] GetAllByQuery(string query)
+        {
+            if (Book.IsIsbn(query))
+                return bookRepository.GelAllByIsbn(query);
+            return bookRepository.GetAllByTitleOrAuthor(query);
+        }
     }
 }
