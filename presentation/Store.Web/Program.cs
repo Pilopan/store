@@ -1,4 +1,4 @@
-using store;
+using Store;
 using Store.Memory;
 
 namespace Store.Web
