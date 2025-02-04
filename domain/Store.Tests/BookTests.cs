@@ -1,4 +1,4 @@
-using store;
+using Store;
 
 namespace Store.Tests
 {

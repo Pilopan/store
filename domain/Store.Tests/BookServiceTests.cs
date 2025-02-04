@@ -1,5 +1,5 @@
 ﻿using Moq;
-using store;
+using Store;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,10 +16,10 @@ namespace Store.Tests
             var bookRepositoryStub = new Mock<IBookRepository>();
 
             bookRepositoryStub.Setup(x => x.GelAllByIsbn(It.IsAny<string>()))
-                              .Returns(new[] { new Book(1, "", "", "") });
+                              .Returns(new[] { new Book(1, "", "", "", "", 0m) });
 
             bookRepositoryStub.Setup(x => x.GetAllByTitleOrAuthor(It.IsAny<string>()))
-                              .Returns(new[] { new Book(2, "", "", "") });
+                              .Returns(new[] { new Book(2, "", "", "", "", 0m) });
 
             var bookService = new BookService(bookRepositoryStub.Object);
             var validIsbn = "ISBN 12345-67890";
@@ -32,10 +32,10 @@ namespace Store.Tests
             var bookRepositoryStub = new Mock<IBookRepository>();
 
             bookRepositoryStub.Setup(x => x.GelAllByIsbn(It.IsAny<string>()))
-                              .Returns(new[] { new Book(1, "", "", "") });
+                              .Returns(new[] { new Book(1, "", "", "", "", 0m) });
 
             bookRepositoryStub.Setup(x => x.GetAllByTitleOrAuthor(It.IsAny<string>()))
-                              .Returns(new[] { new Book(2, "", "", "") });
+                              .Returns(new[] { new Book(2, "", "", "", "", 0m) });
 
             var bookService = new BookService(bookRepositoryStub.Object);
             var validIsbn = "12345-67890";
