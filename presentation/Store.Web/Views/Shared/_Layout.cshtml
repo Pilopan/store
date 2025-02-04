@@ -18,7 +18,21 @@
                 <div class="col-auto">
                     <button class="btn btn-outline-success" type="submit">Искать</button>
                 </div>
-            </form> 
+            </form>
+
+                <span class ="navbar-text me-auto">
+                    @{
+                        Cart cart = new Cart();
+                        if (cart.Items.Count == 0)
+                        {
+                            @:Корзина пуста
+                        }
+                        else
+                        {
+                            @:Товаров @cart.Items.Count на сумму @cart.Amount
+                        }
+                    }
+                </span>
         </nav>
     </header>
     <div class="container">
