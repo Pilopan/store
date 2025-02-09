@@ -14,8 +14,16 @@ namespace Store.Web.Controllers
 
         public IActionResult Index(string query)
         {
-            var books = bookService.GetAllByQuery(query);
-            return View(books);
+            if (query == null)
+            {
+                Book[] books = new Book[0];
+                return View(books);
+            } else
+            {
+                var books = bookService.GetAllByQuery(query);
+                return View(books);
+            }
+            
         }
     }
 }

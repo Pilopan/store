@@ -9,20 +9,20 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-light bg-white">
-            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Интернет-магазин на C#</a>
-            <form class="row gx-2 gy-2" action="@Url.Action("Index", "Search")" method="get">
-                <div class="col-auto">
-                    <input class="form-control" type="search" name="query" placeholder="автор или название" />
+        <nav class="navbar navbar-light bg-light">
+            <div class="container-fluid">
+                <div class="d-flex">
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Интернет-магазин на C#</a>
+                    <form class="d-flex" action="@Url.Action("Index", "Search")" method="get">
+                        <input class="form-control me-2" type="search" name="query" placeholder="автор или название" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Искать</button>
+                    </form>
                 </div>
-                <div class="col-auto">
-                    <button class="btn btn-outline-success" type="submit">Искать</button>
-                </div>
-            </form>
-
-                <span class ="navbar-text me-auto">
+                <span class="navbar-text">
                     @{
-                        Cart cart = new Cart();
+                        Cart cart;
+                        if (!Context.Session.TryGetCart(out cart))
+                            cart = new Cart();
                         if (cart.Items.Count == 0)
                         {
                             @:Корзина пуста
@@ -33,7 +33,36 @@
                         }
                     }
                 </span>
+            </div>
         </nav>
+        @* <nav class="navbar navbar-expand-sm navbar-light bg-white">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Интернет-магазин на C#</a>
+                <form class="row gx-2 gy-2" action="@Url.Action("Index", "Search")" method="get">
+                    <div class="col-auto">
+                        <input class="form-control" type="search" name="query" placeholder="автор или название" />
+                    </div>
+                    <div class="col-auto">
+                        <button class="btn btn-outline-success" type="submit">Искать</button>
+                    </div>
+                </form>
+                <form class="d-flex">
+                     <span class ="navbar-text me-auto">
+                        @{
+                            Cart cart = new Cart();
+                            if (cart.Items.Count == 0)
+                            {
+                                @:Корзина пуста
+                            }
+                            else
+                            {
+                                @:Товаров @cart.Items.Count на сумму @cart.Amount
+                            }
+                        }
+                    </span>
+                </form>
+            </div>
+        </nav> *@
     </header>
     <div class="container">
         <main role="main" class="pb-3">
